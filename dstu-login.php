@@ -109,9 +109,9 @@ AQEBAwEBA0MABECKtrDwddPDo7mxULsZyorz7uW8kBw9DXQWLNbr9SUefjpOdbtJ
 		wp_set_current_user($user_id);
 		wp_set_auth_cookie($user_id);
 		// and finally redirect to a specified destination
-		$redirect = !empty($_REQUEST['redirect']) ? urldecode($_REQUEST['redirect']) : 'http://' . $_SERVER['SERVER_NAME'];
+		/*$redirect = !empty($_REQUEST['redirect']) ? urldecode($_REQUEST['redirect']) : 'http://' . $_SERVER['SERVER_NAME'];
 		wp_redirect($redirect);
-		exit;
+		exit;*/
 	}
 }
 
