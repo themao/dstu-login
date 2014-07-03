@@ -85,10 +85,11 @@ AQEBAwEBA0MABECKtrDwddPDo7mxULsZyorz7uW8kBw9DXQWLNbr9SUefjpOdbtJ
 
 		$salt = wp_salt('secure_auth');
 		$login = 'dstu_' . md5($result['1.2.804.2.1.1.1.11.1.4.1.1'] . $salt);
+		$name = explode(' ', $result['GN']);
 		$userData = array(
 			'user_login' => $login,
 			'user_pass' => md5($login . $salt),
-			'first_name' => explode(' ', $result['GN'])[0],
+			'first_name' => $name[0],
 			'last_name' => $result['SN'],
 			'display_name' => $result['CN'],
 			'nickname' => $result['CN'],
