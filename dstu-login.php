@@ -19,24 +19,24 @@ Author URI: http://dstu.enodev.org/
  * @return array Parsed output transformed to array
  * */
 function dstu_get_parsed($url, $post) {
-	$result = array();
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-	$response = curl_exec($ch);
-	
-	foreach (explode("\n", $response) as $item) {
-		$field = explode('=', $item);
-		if ($field[0]) {
-			$result[$field[0]] = $field[1];
-		}
-	}
+    $result = array();
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+    $response = curl_exec($ch);
 
-	curl_close($ch);
+    foreach (explode("\n", $response) as $item) {
+        $field = explode('=', $item);
+        if ($field[0]) {
+            $result[$field[0]] = $field[1];
+        }
+    }
 
-	return $result;
+    curl_close($ch);
+
+    return $result;
 }
 
 function dstu_get_cert($cert_id) {
@@ -45,8 +45,8 @@ function dstu_get_cert($cert_id) {
     $url = $CONFIG_CERT_BASE . $cert_id;
 
     $ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_CAINFO, plugin_dir_path( __FILE__ ) . "ca-bundle.crt");
 
     $res = curl_exec($ch);
