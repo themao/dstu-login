@@ -39,80 +39,109 @@ function dstu_get_parsed($url, $post) {
 	return $result;
 }
 
-function parse_request() {
-	if (isset($_REQUEST['dstu'])) {
-		// much hardcode!
-		$_REQUEST['dstu'] = 's=BECZOkOtnZyLFfk7nm20iMZ53Im6d93N+ABtVUUqI0QsOgHIPy+SkyqVHpYvZZldFGoYSBpuFqfMQ6NXjRkI7vQg&
-d=http://enodev.org&
-c=-----BEGIN CERTIFICATE-----
-MIIGRzCCBe+gAwIBAgIUfPhaEUqGYbEEAAAA8UcHAJxDCAAwDQYLKoYkAgEBAQED
-AQEwgasxJTAjBgNVBAoMHNCi0J7QkiAi0JDQoNCiLdCc0JDQodCi0JXQoCIxDzAN
-BgNVBAsMBtCm0KHQmjE4MDYGA1UEAwwv0KbQodCaICJNQVNURVJLRVkiINCi0J7Q
-kiAi0JDQoNCiLdCc0JDQodCi0JXQoCIxFzAVBgNVBAUMDlVBLTMwNDA0NzUwLTAx
-MQswCQYDVQQGEwJVQTERMA8GA1UEBwwI0JrQuNGX0LIwHhcNMTMwODIxMTEyNTQz
-WhcNMTUwODIxMTEyNTQzWjCCAR8xOTA3BgNVBAoMMNCf0LXRgtGA0L7QsiDQhtC7
-0LvRjyDQntC70LXQutGB0LDQvdC00YDQvtCy0LjRhzEuMCwGA1UEDAwl0JLQu9Cw
-0YHQvdC+0YDRg9GH0L3QuNC5INC/0ZbQtNC/0LjRgTEdMBsGA1UEAwwU0J/QtdGC
-0YDQvtCyINCGLtCeLiAxFTATBgNVBAQMDNCf0LXRgtGA0L7QsjEsMCoGA1UEKgwj
-0IbQu9C70Y8g0J7Qu9C10LrRgdCw0L3QtNGA0L7QstC40YcxDzANBgNVBAUMBjQ3
-NzE2OTELMAkGA1UEBhMCVUExFzAVBgNVBAcMDtC8LiDQntC00LXRgdCwMRcwFQYD
-VQQIDA7QntC00LXRgdGM0LrQsDCB8jCByQYLKoYkAgEBAQEDAQEwgbkwdTAHAgIB
-AQIBDAIBAAQhEL7j22rqnh+GV4xFwSWU/5QjlKfXOPkYfmUVAXKU9M4BAiEAgAAA
-AAAAAAAAAAAAAAAAAGdZITrxgumH0+F3FJB9Rw0EIbYP0tjc6Kk0I8YQG8qRxHoA
-fmwwCybNVWybDn0g7ykqAARAqdbrRfE8cIKAxJZ7Ix9erfZY66TANykdONlr8CXK
-Thf46XINxhW0OiiXXwvB3qNkOLVk6iwXn9ASPm24+sV5BAMkAAQh/UwNiU5OFqLH
-7aTCYarjT5BUxKM6e7rZgHfSZuQeih0Bo4IC2zCCAtcwKQYDVR0OBCIEINayMui1
-IM7yDgGClgq+RKdnjmNtuaYM8kbs0ShGz98PMCsGA1UdIwQkMCKAIHz4WhFKhmGx
-W256tv1VLaUx3vuP8o8IrYly6IU4vNloMC8GA1UdEAQoMCagERgPMjAxMzA4MjEx
-MTI1NDNaoREYDzIwMTUwODIxMTEyNTQzWjAOBgNVHQ8BAf8EBAMCA8gwGwYDVR0l
-AQH/BBEwDwYNKoYkAgEBAQuOv+EOKzAZBgNVHSABAf8EDzANMAsGCSqGJAIBAQEC
-AjAMBgNVHRMBAf8EAjAAMB4GCCsGAQUFBwEDAQH/BA8wDTALBgkqhiQCAQEBAgEw
-eAYDVR0RBHEwb6BMBgwrBgEEAYGXRgEBBAKgPAw60LwuINCe0LTQtdGB0LAsINCy
-0YPQuy4g0JrQsNC90LTRgNCw0YjQuNC90LAsIDE1LCDQutCyLiAxMqAfBgwrBgEE
-AYGXRgEBBAGgDwwNMDYzLTE5NS0zNS0yMDBFBgNVHR8EPjA8MDqgOKA2hjRodHRw
-Oi8vY3JsLm1hc3RlcmtleS51YS9jYS9jcmxzL0NBLUYzRTMxRDJFLUZ1bGwuY3Js
-MEYGA1UdLgQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwubWFzdGVya2V5LnVhL2NhL2Ny
-bHMvQ0EtRjNFMzFEMkUtRGVsdGEuY3JsMEMGCCsGAQUFBwEBBDcwNTAzBggrBgEF
-BQcwAYYnaHR0cDovL29jc3AubWFzdGVya2V5LnVhL3NlcnZpY2VzL29jc3AvMEEG
-CCsGAQUFBwELBDUwMzAxBggrBgEFBQcwA4YlaHR0cDovL3RzcC5tYXN0ZXJrZXku
-dWEvc2VydmljZXMvdHNwLzBFBgNVHQkEPjA8MBwGDCqGJAIBAQELAQQCATEMEwoz
-MjI1ODEzODczMBwGDCqGJAIBAQELAQQBATEMEwozMjI1ODEzODczMA0GCyqGJAIB
-AQEBAwEBA0MABECKtrDwddPDo7mxULsZyorz7uW8kBw9DXQWLNbr9SUefjpOdbtJ
-3bruYVnfNPAMPf0y1YdPS7JhJFWeZsutdOMx
------END CERTIFICATE-----';
+function dstu_get_cert($cert_id) {
+    global $CONFIG_CERT_BASE;
 
-		$result = dstu_get_parsed('http://localhost:8013/api/0/check', $_REQUEST['dstu']);
+    $url = $CONFIG_CERT_BASE . $cert_id;
 
-		$salt = wp_salt('secure_auth');
-		$login = 'dstu_' . md5($result['1.2.804.2.1.1.1.11.1.4.1.1'] . $salt);
-		$name = explode(' ', $result['GN']);
-		$userData = array(
-			'user_login' => $login,
-			'user_pass' => md5($login . $salt),
-			'first_name' => $name[0],
-			'last_name' => $result['SN'],
-			'display_name' => $result['CN'],
-			'nickname' => $result['CN'],
-		);
+    $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CAINFO, plugin_dir_path( __FILE__ ) . "ca-bundle.crt");
 
-		// check for an existing user
-		$user = get_user_by('login', $login);
-		// create if not exists
-		if (!$user) {
-			$user_id = wp_insert_user($userData);
-		}
-		// or get the ID of existing
-		else {
-			$user_id = $user_id->ID;
-		}
-		// authenticate and remember
-		wp_set_current_user($user_id);
-		wp_set_auth_cookie($user_id);
-		// and finally redirect to a specified destination
-		/*$redirect = !empty($_REQUEST['redirect']) ? urldecode($_REQUEST['redirect']) : 'http://' . $_SERVER['SERVER_NAME'];
-		wp_redirect($redirect);
-		exit;*/
-	}
+    $res = curl_exec($ch);
+
+    curl_close($ch);
+
+    return $res;
 }
 
-add_action( 'parse_request', 'parse_request' );
+function hide_login_form($classes) {
+    array_push($classes, 'dstu-hidden');
+    return $classes;
+}
+
+function dstu_login_form() {
+    echo '<a href="https://eusign.org/auth" class="dstu-button">Sign with eU</a>';
+}
+
+$CONFIG_MY_URL = 'https://dstu.enodev.org/wp-login.php';
+$CONFIG_CERT_BASE = 'https://eusign.org/api/1/certificates/';
+
+function dstu_authenticate($user, $username, $password) {
+    global $CONFIG_MY_URL;
+
+    if (!isset($_REQUEST['sign']) ||
+        !isset($_REQUEST['cert_id']) ||
+        !isset($_REQUEST['nonce'])) {
+        return $user;
+    }
+
+    $sign = $_REQUEST['sign'];
+    $sign = str_replace('-', '+', $sign);
+    $sign = str_replace('_', '/', $sign);
+
+    $cert = dstu_get_cert($_REQUEST['cert_id']);
+
+    $data = $_REQUEST['nonce'] . '|'. $CONFIG_MY_URL;
+
+    $for_api = "s=" . $sign . "&c=" . $cert . "&d=" . $data;
+
+    $result = dstu_get_parsed('http://localhost:8013/api/0/check', $for_api);
+    if(isset($result['CN'])) {
+        $user = dstu_create_login($result);
+    }
+
+    return $user;
+}
+
+function dstu_create_login($result) {
+
+    $salt = wp_salt('secure_auth');
+    $uniq = null;
+    $full_name = null;
+
+    if(isset($result['1.2.804.2.1.1.1.11.1.4.1.1'])) {
+        $uniq = $result['1.2.804.2.1.1.1.11.1.4.1.1'];
+    } else {
+        $uniq = $result['CN'];
+    }
+
+    if(isset($result['GN'])) {
+        $full_name = $result['GN'];
+    } else {
+        $full_name = $result['CN'];
+    }
+
+    $login = 'dstu_' . md5($salt . $uniq);
+    $name = explode(' ', $full_name);
+
+    $userData = array(
+        'user_login' => $login,
+        'user_pass' => md5($login . $salt),
+        'first_name' => $name[0],
+        'last_name' => $result['SN'],
+        'display_name' => $result['CN'],
+        'nickname' => $result['CN'],
+    );
+
+    // check for an existing user
+    $user = get_user_by('login', $login);
+    // create if not exists
+    if (!$user) {
+        $user_id = wp_insert_user($userData);
+    }
+    // or get the ID of existing
+    else {
+        $user_id = $user_id->ID;
+    }
+    // authenticate and remember
+    wp_set_current_user($user_id);
+    wp_set_auth_cookie($user_id);
+
+    return $user;
+}
+
+add_action('login_body_class', 'hide_login_form');
+add_action('login_form', 'dstu_login_form');
+add_action('authenticate', 'dstu_authenticate');
