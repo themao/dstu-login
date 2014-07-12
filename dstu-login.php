@@ -40,9 +40,8 @@ function dstu_get_parsed($url, $post) {
 }
 
 function dstu_get_cert($cert_id) {
-    global $CONFIG_CERT_BASE;
 
-    $url = $CONFIG_CERT_BASE . $cert_id;
+    $url = get_option('cert_base', DEFAULT_DSTU_CERT_BASE) . $cert_id;
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -62,17 +61,39 @@ function hide_login_form($classes) {
 }
 
 function dstu_login_form() {
-    global $CONFIG_APP_ID;
-    echo '<a href="https://eusign.org/auth/' . $CONFIG_APP_ID . '" class="dstu-button">Sign with eU</a>';
+    $app_id = get_option('app_id');
+    if($app_id) {
+        echo '<a href="https://eusign.org/auth/' . $app_id. '" class="dstu-button">Sign with eU</a>';
+    }
 }
 
-$CONFIG_APP_ID = '49cc552836fa43459ed4d850272ad5ca';
-$CONFIG_MY_URL = 'https://dstu.enodev.org/wp-login.php';
-$CONFIG_CERT_BASE = 'https://eusign.org/api/1/certificates/';
+function dstu_admin_init() {
+    dstu_init_settings();
+}
+
+function dstu_init_settings() {
+    register_setting('dstu-login-group', 'app_id');
+    register_setting('dstu-login-group', 'auth_url');
+    register_setting('dstu-login-group', 'cert_base');
+
+    define('DEFAULT_DSTU_AUTH_URL', site_url('/wp-login.php', 'https'));
+    define('DEFAULT_DSTU_CERT_BASE', 'https://eusign.org/api/1/certificates/');
+}
+
+function dstu_add_menu() {
+    add_options_page('DSTU Login Settings', 'DSTU Login plugin', 'manage_options', 'dstu-login', 'dstu_settings_page');
+}
+
+function dstu_settings_page() {
+    if(!current_user_can('manage_options'))
+    {
+        wp_die(__('You do not have sufficient permissions to access this page.'));
+    }
+    include(sprintf("%s/templates/settings.php", plugin_dir_path( __FILE__ )));
+}
+
 
 function dstu_authenticate($user) {
-    global $CONFIG_MY_URL;
-
     if (!isset($_REQUEST['sign']) ||
         !isset($_REQUEST['cert_id']) ||
         !isset($_REQUEST['nonce'])) {
@@ -85,7 +106,7 @@ function dstu_authenticate($user) {
 
     $cert = dstu_get_cert($_REQUEST['cert_id']);
 
-    $data = $_REQUEST['nonce'] . '|'. $CONFIG_MY_URL;
+    $data = $_REQUEST['nonce'] . '|'. get_option('auth_url', DEFAULT_DSTU_AUTH_URL);
 
     $for_api = "s=" . $sign . "&c=" . $cert . "&d=" . $data;
 
@@ -147,3 +168,6 @@ function dstu_create_login($result) {
 add_action('login_body_class', 'hide_login_form');
 add_action('login_form', 'dstu_login_form');
 add_action('authenticate', 'dstu_authenticate', 10, 1);
+
+add_action('admin_init', 'dstu_admin_init');
+add_action('admin_menu', 'dstu_add_menu');
