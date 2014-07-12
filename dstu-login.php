@@ -62,9 +62,11 @@ function hide_login_form($classes) {
 }
 
 function dstu_login_form() {
-    echo '<a href="https://eusign.org/auth" class="dstu-button">Sign with eU</a>';
+    global $CONFIG_APP_ID;
+    echo '<a href="https://eusign.org/auth/' . $CONFIG_APP_ID . '" class="dstu-button">Sign with eU</a>';
 }
 
+$CONFIG_APP_ID = '49cc552836fa43459ed4d850272ad5ca';
 $CONFIG_MY_URL = 'https://dstu.enodev.org/wp-login.php';
 $CONFIG_CERT_BASE = 'https://eusign.org/api/1/certificates/';
 
