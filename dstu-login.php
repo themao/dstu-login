@@ -68,7 +68,7 @@ function dstu_login_form() {
 $CONFIG_MY_URL = 'https://dstu.enodev.org/wp-login.php';
 $CONFIG_CERT_BASE = 'https://eusign.org/api/1/certificates/';
 
-function dstu_authenticate($user, $username, $password) {
+function dstu_authenticate($user) {
     global $CONFIG_MY_URL;
 
     if (!isset($_REQUEST['sign']) ||
@@ -144,4 +144,4 @@ function dstu_create_login($result) {
 
 add_action('login_body_class', 'hide_login_form');
 add_action('login_form', 'dstu_login_form');
-add_action('authenticate', 'dstu_authenticate');
+add_action('authenticate', 'dstu_authenticate', 10, 1);
