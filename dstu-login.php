@@ -62,8 +62,9 @@ function hide_login_form($classes) {
 
 function dstu_login_form() {
     $app_id = get_option('app_id');
+    $wp_nonce = wp_create_nonce('dstu-login');
     if($app_id) {
-        echo '<a href="https://eusign.org/auth/' . $app_id. '" class="dstu-button">Sign with eU</a>';
+        echo '<a href="https://eusign.org/auth/' . $app_id. '?state=' . $wp_nonce. '" class="dstu-button">Sign with eU</a>';
     }
 }
 
@@ -96,7 +97,12 @@ function dstu_settings_page() {
 function dstu_authenticate($user) {
     if (!isset($_REQUEST['sign']) ||
         !isset($_REQUEST['cert_id']) ||
+        !isset($_REQUEST['state']) ||
         !isset($_REQUEST['nonce'])) {
+        return $user;
+    }
+
+    if(!wp_verify_nonce($_REQUEST['state'], 'dstu-login')) {
         return $user;
     }
 
