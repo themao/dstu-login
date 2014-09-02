@@ -1,0 +1,63 @@
+# Copyright (C) 2014 DSTU Login
+# This file is distributed under the same license as the DSTU Login package.
+msgid ""
+msgstr ""
+"Project-Id-Version: DSTU Login 0.1b\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/eusign-wordpress\n"
+"POT-Creation-Date: 2014-09-02 20:47:08+00:00\n"
+"PO-Revision-Date: 2014-09-02 23:03+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: dstu-login.php:76
+msgid "Sign with eU"
+msgstr "Увійти з eU"
+
+#: dstu-login.php:95
+msgid "DSTU Login Settings"
+msgstr "Налаштування DSTU Login"
+
+#: dstu-login.php:96
+msgid "DSTU Login plugin"
+msgstr "Плагін DSTU Login"
+
+#: dstu-login.php:106
+msgid "You do not have sufficient permissions to access this page."
+msgstr "У вас недостатньо повноважень для доступу до цієї сторінки."
+
+#: templates/settings.php:2
+#, fuzzy
+msgid "DSTU Login settings"
+msgstr "Налаштування DSTU Login"
+
+#: templates/settings.php:9
+msgid "Registered app id"
+msgstr "App ID зареєстрованого додатка"
+
+#: templates/settings.php:14
+msgid "Auth url (login page)"
+msgstr "URL аутентифікації (сторінка логіну)"
+
+#: templates/settings.php:19
+msgid "Cert API URL"
+msgstr "API URL для сертифікатів"
+
+#. Plugin Name of the plugin/theme
+msgid "DSTU Login"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Login with a DSTU certificate"
+msgstr "Логін з допомогою сертифікату DSTU"
+
+#. Author of the plugin/theme
+msgid "Anton Martynenko, Ilya Petrov"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://dstu.enodev.org/"
+msgstr ""
