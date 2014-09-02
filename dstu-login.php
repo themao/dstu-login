@@ -9,7 +9,13 @@ Description: Login with a DSTU certificate
 Author: Anton Martynenko, Ilya Petrov
 Version: 0.1b
 Author URI: http://dstu.enodev.org/
+Text Domain: dstu-plugin
 */
+
+function dstu_plugin_init() {
+    $plugin_dir = basename(dirname(__FILE__)) . '/locales/';
+    load_plugin_textdomain( 'dstu-login', false, $plugin_dir );
+}
 
 /**
  * Get response from dstu daemon as an array
@@ -62,9 +68,12 @@ function hide_login_form($classes) {
 
 function dstu_login_form() {
     $app_id = get_option('app_id');
-    $wp_nonce = wp_create_nonce('dstu-login');
+
     if($app_id) {
-        echo '<a href="https://eusign.org/auth/' . $app_id. '?state=' . $wp_nonce. '" class="dstu-button">Sign with eU</a>';
+        $wp_nonce = wp_create_nonce('dstu-login');
+        echo '<p><a href="https://eusign.org/auth/' . $app_id. 
+             '?state=' . $wp_nonce. '" class="dstu-button">' . 
+             __('Sign with eU', 'dstu-login') . '</a></p>';
     }
 }
 
@@ -82,7 +91,13 @@ function dstu_init_settings() {
 }
 
 function dstu_add_menu() {
-    add_options_page('DSTU Login Settings', 'DSTU Login plugin', 'manage_options', 'dstu-login', 'dstu_settings_page');
+    add_options_page(
+        __('DSTU Login Settings', 'dstu-login'),
+        __('DSTU Login plugin', 'dstu-login'),
+        'manage_options',
+        'dstu-login',
+        'dstu_settings_page'
+    );
 }
 
 function dstu_settings_page() {
@@ -177,3 +192,4 @@ add_action('authenticate', 'dstu_authenticate', 10, 1);
 
 add_action('admin_init', 'dstu_admin_init');
 add_action('admin_menu', 'dstu_add_menu');
+add_action('plugins_loaded', 'dstu_plugin_init');
