@@ -73,7 +73,7 @@ function dstu_login_form() {
         $wp_nonce = wp_create_nonce('dstu-login');
         echo '<p><a href="https://eusign.org/auth/' . $app_id. 
              '?state=' . $wp_nonce. '" class="dstu-button">' . 
-             __('Sign with eU', 'dstu-login') . '</a></p>';
+             __('Sign with EUSign.org', 'dstu-login') . '</a></p>';
     }
 }
 

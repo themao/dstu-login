@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSTU Login 0.1b\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/eusign-wordpress\n"
-"POT-Creation-Date: 2014-09-02 20:47:08+00:00\n"
-"PO-Revision-Date: 2014-09-02 23:03+0100\n"
+"POT-Creation-Date: 2014-09-03 19:24:15+00:00\n"
+"PO-Revision-Date: 2014-09-03 21:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #: dstu-login.php:76
-msgid "Sign with eU"
-msgstr "Увійти з eU"
+msgid "Sign with EUSign.org"
+msgstr "Увійти з EUSign.org"
 
 #: dstu-login.php:95
 msgid "DSTU Login Settings"
